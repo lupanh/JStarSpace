@@ -178,7 +178,7 @@
                             </outputDirectory>
                         </configuration>
                     </execution>
-                    <execution>
+                    <!-- <execution>
                         <id>run-javacpp-compiler</id>
                         <phase>process-classes</phase>
                         <goals>
@@ -190,12 +190,12 @@
                                     com.github.jstarspace.*
                                 </classOrPackageName>
                             </classOrPackageNames>
-                            <!-- <compilerOptions>
+                            <compilerOptions>
                                 <compilerOption>-std=c++0x</compilerOption>
                                 <compilerOption>-I${project.build.sourceDirectory}/../cpp</compilerOption>
-                            </compilerOptions> -->
+                            </compilerOptions>
                         </configuration>
-                    </execution>
+                    </execution> -->
                 </executions>
             </plugin>
             <plugin>
