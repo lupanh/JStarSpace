@@ -155,6 +155,14 @@ public class StarSpaceWrapper extends com.github.jstarspace.config.StarSpaceWrap
     }
 }
 
+// Parsed from starspace_wrapper.h
+
+// #ifndef STARSPACE_WRAPPER_H
+// #define STARSPACE_WRAPPER_H
+
+// #include "StarSpace/src/starspace.h"
+// #include "starspace_wrapper_misc.h"
+
     @Namespace("StarSpaceWrapper") @NoOffset public static class StarSpaceApi extends Pointer {
         static { Loader.load(); }
         /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
@@ -165,14 +173,33 @@ public class StarSpaceWrapper extends com.github.jstarspace.config.StarSpaceWrap
         @Override public StarSpaceApi position(long position) {
             return (StarSpaceApi)super.position(position);
         }
-
+    
         public StarSpaceApi() { super((Pointer)null); allocate(); }
         private native void allocate();
-        // We don't make runCmd() a static method so that Loader.load() is always be called in StarSpaceApi().
         public native void runCmd(int arg0, @Cast("char**") PointerPointer arg1);
         public native void runCmd(int arg0, @Cast("char**") @ByPtrPtr BytePointer arg1);
         public native void runCmd(int arg0, @Cast("char**") @ByPtrPtr ByteBuffer arg1);
         public native void runCmd(int arg0, @Cast("char**") @ByPtrPtr byte[] arg1);
     }
+
+
+// #endif
+
+
+// Parsed from starspace_wrapper_javacpp.h
+
+// Added <numeric> since VS 14.0 complains about missing std::iota
+// #include <numeric>
+// #include "StarSpace/src/utils/args.cpp"
+// #include "StarSpace/src/dict.cpp"
+// #include "StarSpace/src/starspace.cpp"
+// #include "StarSpace/src/matrix.cpp"
+// #include "StarSpace/src/model.cpp"
+// #include "StarSpace/src/qmatrix.cc"
+// #include "StarSpace/src/vector.cc"
+// #include "StarSpace/src/utils.cc"
+
+// #include "starspace_wrapper.cc"
+
 
 }
