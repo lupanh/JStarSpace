@@ -16,11 +16,6 @@ import org.bytedeco.javacpp.tools.InfoMapper;
 public class StarSpaceWrapper implements InfoMapper {
     public void map(InfoMap infoMap) {
         infoMap
-            .put(new Info("starspace::real").pointerTypes("float"))
-            .put(new Info("std::vector<std::string>").pointerTypes("StringVector").define())
-            .put(new Info("std::vector<starspace::real>").pointerTypes("RealVector").define())
-            .put(new Info("std::pair<starspace::real,std::string>").pointerTypes("FloatStringPair").define())
-            .put(new Info("std::vector<std::pair<starspace::real,std::string> >").pointerTypes("FloatStringPairVector").define())
-            .put(new Info("std::pair<starspace::real,int32_t>").pointerTypes("DoubleIntPair").define());
+            .put(new Info("std::vector<std::string>").pointerTypes("StringVector").define());
     }
 }

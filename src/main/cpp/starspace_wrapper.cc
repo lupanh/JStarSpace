@@ -2,7 +2,7 @@
 #include <sstream>
 
 #include "starspace_wrapper.h"
-#include "StarSpace/src/main.cc"
+#include "StarSpace/src/main.cpp"
 
 namespace StarSpaceWrapper {
 

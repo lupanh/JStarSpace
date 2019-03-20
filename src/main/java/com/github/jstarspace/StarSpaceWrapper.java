@@ -45,116 +45,6 @@ public class StarSpaceWrapper extends com.github.jstarspace.config.StarSpaceWrap
     }
 }
 
-@Name("std::vector<starspace::real>") public static class RealVector extends Pointer {
-    static { Loader.load(); }
-    /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
-    public RealVector(Pointer p) { super(p); }
-    public RealVector(float ... array) { this(array.length); put(array); }
-    public RealVector()       { allocate();  }
-    public RealVector(long n) { allocate(n); }
-    private native void allocate();
-    private native void allocate(@Cast("size_t") long n);
-    public native @Name("operator=") @ByRef RealVector put(@ByRef RealVector x);
-
-    public native long size();
-    public native void resize(@Cast("size_t") long n);
-
-    @Index public native @ByRef float get(@Cast("size_t") long i);
-    public native RealVector put(@Cast("size_t") long i, float value);
-
-    public RealVector put(float ... array) {
-        if (size() != array.length) { resize(array.length); }
-        for (int i = 0; i < array.length; i++) {
-            put(i, array[i]);
-        }
-        return this;
-    }
-}
-
-@Name("std::vector<std::pair<starspace::real,std::string> >") public static class FloatStringPairVector extends Pointer {
-    static { Loader.load(); }
-    /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
-    public FloatStringPairVector(Pointer p) { super(p); }
-    public FloatStringPairVector(float[] firstValue, BytePointer[] secondValue) { this(Math.min(firstValue.length, secondValue.length)); put(firstValue, secondValue); }
-    public FloatStringPairVector(float[] firstValue, String[] secondValue) { this(Math.min(firstValue.length, secondValue.length)); put(firstValue, secondValue); }
-    public FloatStringPairVector()       { allocate();  }
-    public FloatStringPairVector(long n) { allocate(n); }
-    private native void allocate();
-    private native void allocate(@Cast("size_t") long n);
-    public native @Name("operator=") @ByRef FloatStringPairVector put(@ByRef FloatStringPairVector x);
-
-    public native long size();
-    public native void resize(@Cast("size_t") long n);
-
-    @Index public native @ByRef float first(@Cast("size_t") long i); public native FloatStringPairVector first(@Cast("size_t") long i, float first);
-    @Index public native @StdString BytePointer second(@Cast("size_t") long i);  public native FloatStringPairVector second(@Cast("size_t") long i, BytePointer second);
-    @MemberSetter @Index public native FloatStringPairVector second(@Cast("size_t") long i, @StdString String second);
-
-    public FloatStringPairVector put(float[] firstValue, BytePointer[] secondValue) {
-        for (int i = 0; i < firstValue.length && i < secondValue.length; i++) {
-            first(i, firstValue[i]);
-            second(i, secondValue[i]);
-        }
-        return this;
-    }
-
-    public FloatStringPairVector put(float[] firstValue, String[] secondValue) {
-        for (int i = 0; i < firstValue.length && i < secondValue.length; i++) {
-            first(i, firstValue[i]);
-            second(i, secondValue[i]);
-        }
-        return this;
-    }
-}
-
-@NoOffset @Name("std::pair<starspace::real,std::string>") public static class FloatStringPair extends Pointer {
-    static { Loader.load(); }
-    /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
-    public FloatStringPair(Pointer p) { super(p); }
-    public FloatStringPair(float firstValue, BytePointer secondValue) { this(); put(firstValue, secondValue); }
-    public FloatStringPair(float firstValue, String secondValue) { this(); put(firstValue, secondValue); }
-    public FloatStringPair()       { allocate();  }
-    private native void allocate();
-    public native @Name("operator=") @ByRef FloatStringPair put(@ByRef FloatStringPair x);
-
-
-    @MemberGetter public native @ByRef float first(); public native FloatStringPair first(float first);
-    @MemberGetter public native @StdString BytePointer second();  public native FloatStringPair second(BytePointer second);
-    @MemberSetter @Index public native FloatStringPair second(@StdString String second);
-
-    public FloatStringPair put(float firstValue, BytePointer secondValue) {
-        first(firstValue);
-        second(secondValue);
-        return this;
-    }
-
-    public FloatStringPair put(float firstValue, String secondValue) {
-        first(firstValue);
-        second(secondValue);
-        return this;
-    }
-}
-
-@NoOffset @Name("std::pair<starspace::real,int32_t>") public static class DoubleIntPair extends Pointer {
-    static { Loader.load(); }
-    /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */
-    public DoubleIntPair(Pointer p) { super(p); }
-    public DoubleIntPair(float firstValue, int secondValue) { this(); put(firstValue, secondValue); }
-    public DoubleIntPair()       { allocate();  }
-    private native void allocate();
-    public native @Name("operator=") @ByRef DoubleIntPair put(@ByRef DoubleIntPair x);
-
-
-    @MemberGetter public native @ByRef float first(); public native DoubleIntPair first(float first);
-    @MemberGetter public native int second();  public native DoubleIntPair second(int second);
-
-    public DoubleIntPair put(float firstValue, int secondValue) {
-        first(firstValue);
-        second(secondValue);
-        return this;
-    }
-}
-
 // Parsed from starspace_wrapper.h
 
 // #ifndef STARSPACE_WRAPPER_H
@@ -190,14 +80,7 @@ public class StarSpaceWrapper extends com.github.jstarspace.config.StarSpaceWrap
 
 // Added <numeric> since VS 14.0 complains about missing std::iota
 // #include <numeric>
-// #include "StarSpace/src/utils/args.cpp"
-// #include "StarSpace/src/dict.cpp"
 // #include "StarSpace/src/starspace.cpp"
-// #include "StarSpace/src/matrix.cpp"
-// #include "StarSpace/src/model.cpp"
-// #include "StarSpace/src/qmatrix.cc"
-// #include "StarSpace/src/vector.cc"
-// #include "StarSpace/src/utils.cc"
 
 // #include "starspace_wrapper.cc"
 
