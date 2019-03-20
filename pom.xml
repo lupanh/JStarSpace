@@ -178,7 +178,7 @@
                             </outputDirectory>
                         </configuration>
                     </execution>
-                    <!-- <execution>
+                    <execution>
                         <id>run-javacpp-compiler</id>
                         <phase>process-classes</phase>
                         <goals>
@@ -193,9 +193,10 @@
                             <compilerOptions>
                                 <compilerOption>-std=c++0x</compilerOption>
                                 <compilerOption>-I${project.build.sourceDirectory}/../cpp</compilerOption>
+                                <compilerOption>-I/usr/local/bin/boost_1_63_0/</compilerOption>
                             </compilerOptions>
                         </configuration>
-                    </execution> -->
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
